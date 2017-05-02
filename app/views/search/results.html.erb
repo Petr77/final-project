@@ -3,6 +3,12 @@
 <% if @locations.empty? %>
   Sorry, no accommodation found for this location. Try another.
 <% else %>
+
+
+  <% @locations.each do |l| %>
+  <%= link_to l.title, accommodation_path(l) %><br>
+  <% end %>
+
 <div id="map"></div>
 <script>
   function initMap() {
@@ -13,7 +19,7 @@
     });
 
     var searches = [
-      <%@locations.each do |location|%>
+      <% @locations.each do |location|%>
         ['<%= location.title %>', <%= location.latitude%>, <%= location.longitude %>],
       <%end%>
     ];
@@ -34,8 +40,7 @@
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHUFsZfdiSTlWvUkgwPWHwrmzfLAQQJyk&callback=initMap">
   </script>
-<% end %>
 
-<%= @locations.each do |l| %>
-<%= l.title %>
+
+
 <% end %>
