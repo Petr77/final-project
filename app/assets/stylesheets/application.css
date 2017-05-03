@@ -13,7 +13,44 @@
  *= require_tree .
  *= require_self
  */
+
+ .place-show:hover{
+   cursor: pointer;
+   text-decoration: underline;
+ }
+
  #map {
    height: 400px;
    width: 50%;
   }
+
+.accom_thumb{
+  max-width: 100px;
+}
+
+#search-input {
+  margin-top: 10px;
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+  height: 30px;
+}
+
+h1 {
+  font-size: 70px;
+  text-align: center;
+}
+
+.lead {
+  text-align: center;
+}
+
+.jumbotron {
+  background-image: url(http://hdwallpaperia.com/wp-content/uploads/2013/12/Sunset-Beach-Wallpaper-HD-Widescreen.jpg);
+  background-size: cover;
+}

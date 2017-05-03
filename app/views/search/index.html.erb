@@ -1,11 +1,16 @@
-<h1>Search#index</h1>
+<div class="jumbotron">
+  <h1>Weekend Getaways</h1>
+  <p class="lead">Having one of those tough weeks at work? Sometimes we just need to getaway for the weekend. Browse our weekend getaways below and imagine relaxing & unwinding!</p>
+</div>
 
-<%= link_to  "North Coast", search_results_path(term: "Avoca Beach, NSW", distance: 50) %>
+
+<%= link_to  "Central Coast", search_results_path(term: "Avoca Beach, NSW", distance: 50) %>
 <br>
 <%= link_to "Blue Mountains", search_results_path(term: "Katoomba, NSW", distance: 50) %>
 <br>
 <%= link_to "South Coast", search_results_path(term: "Jervis Bay, NSW", distance: 50) %>
 <br>
+
 
 <%= form_tag(search_results_path, method: "GET") do %>
   <%= text_field_tag :term %>
@@ -13,3 +18,26 @@
 
 <%= submit_tag "Search" %>
 <% end %>
+
+<!-- <div class="row">
+  <div class="col-md-3">
+    <div class="card" >
+    <%= link_to  "Central Coast", search_results_path(term: "Avoca Beach, NSW", distance: 50) %>
+      <div class="card-block">
+        <h4 class="card-title">Central Coast</h4>
+      </div>
+    </div>
+    <div class="card" >
+      <%= link_to "Blue Mountains", search_results_path(term: "Katoomba, NSW", distance: 50) %>
+      <div class="card-block">
+        <h4 class="card-title">Blue Mountains</h4>
+      </div>
+    </div>
+    <div class="card" >
+    <%= link_to "South Coast", search_results_path(term: "Jervis Bay, NSW", distance: 50) %>
+      <div class="card-block">
+        <h4 class="card-title">South Coast</h4>
+      </div>
+    </div>
+  </div>
+</div> -->

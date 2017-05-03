@@ -1,4 +1,4 @@
-<h1><%= params[:term] %></h1>
+<h2><%= params[:term] %></h2>
 
 <% if @locations.empty? %>
   Sorry, no accommodation found for this location. Try another.
@@ -10,9 +10,9 @@
   <% end %>
 
 <div id="map"></div>
+
 <script>
   function initMap() {
-    // var location =
     var map = new google.maps.Map(document.getElementById('map'), {
       // zoom: 9,
       center: {lat: -33.8697753, lng: 151.2059688}
@@ -40,7 +40,6 @@
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHUFsZfdiSTlWvUkgwPWHwrmzfLAQQJyk&callback=initMap">
   </script>
-
 
 
 <% end %>

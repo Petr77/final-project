@@ -1,3 +1,159 @@
 
 <h2><%= @location.title %></h2>
 <p><%= @location.address %></p>
+
+
+<%= image_tag @location.images.first.url %>
+<br>
+
+<% @location.images[1..5].each do |img| %>
+<%= image_tag img.url, class: "accom_thumb" %>
+<% end %>
+
+<input id="search-input" class="controls" type="text" placeholder="Search Box">
+
+<div class="place-show" place="restaurant">Restaurants</div>
+<div class="place-show" place="store">Stores</div>
+<div class="place-show" place="natural_feature">Natural attractions</div>
+<div class="place-show" place="bar">Bar</div>
+<div id="map"></div>
+
+
+<script>
+  var map;
+  var infowindow;
+  var accom = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %> };
+  var markers = [];
+  var placesService;
+
+
+  $('.place-show').on('click', function(){
+    showPlaces( $(this).attr('place') );
+  });
+
+  function initMap() {
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: accom,
+      zoom:14,
+    });
+
+    var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/A/0099FF/");
+
+    var marker = new google.maps.Marker({
+    position: accom,
+    icon: pinImage
+    });
+    marker.setMap(map);
+
+    // placesService = google.maps.places.PlacesService(map);
+
+    var input = document.getElementById('search-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      // Clear out the old markers.
+      markers.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      // For each place, get the icon, name and location.
+      var bounds = new google.maps.LatLngBounds();
+      places.forEach(function(place) {
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+        var icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+        };
+
+        // Create a marker for each place.
+        markers.push(new google.maps.Marker({
+          map: map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location
+        }));
+
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+  }
+
+
+
+  var showPlaces = function(placeType){
+
+    placesService = new google.maps.places.PlacesService(map);
+
+    markers.forEach(function(m){
+      m.setMap(null);
+    });
+    markers = [];
+
+    placesService.nearbySearch({
+      location: accom,
+      radius: 5000,
+      type: [placeType]
+    }, placeMarkerCallback);
+  };
+
+  function placeMarkerCallback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
+    }
+  }
+
+  function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location
+    });
+
+    markers.push( marker );
+
+    var infowindow = new google.maps.InfoWindow();
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+
+      placesService.getDetails({ reference: place.reference }, function(details, status){
+        console.log(details, status);
+      });
+
+    });
+  }
+
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHUFsZfdiSTlWvUkgwPWHwrmzfLAQQJyk&libraries=places&callback=initMap"></script>
