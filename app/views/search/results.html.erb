@@ -1,13 +1,16 @@
-<h2><%= params[:term] %></h2>
-
+<br>
+<h1><%= params[:term] %></h1>
+<br>
 <% if @locations.empty? %>
   Sorry, no accommodation found for this location. Try another.
 <% else %>
 
-
+<div class="accom-result">
+  <h4>Accommodation:</h4>
   <% @locations.each do |l| %>
   <%= link_to l.title, accommodation_path(l) %><br>
   <% end %>
+</div>
 
 <div id="map"></div>
 

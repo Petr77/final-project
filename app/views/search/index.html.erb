@@ -1,43 +1,46 @@
 <div class="jumbotron">
   <h1>Weekend Getaways</h1>
-  <p class="lead">Having one of those tough weeks at work? Sometimes we just need to getaway for the weekend. Browse our weekend getaways below and imagine relaxing & unwinding!</p>
+  <h3 class="lead">Having one of those tough weeks at work? Sometimes we just need to getaway for the weekend.</h3>
 </div>
 
+<div class="main-search">
+  <%= form_tag(search_results_path, method: "GET") do %>
+    <%= text_field_tag :term %>
+    <%= select_tag(:distance, options_for_select([['10km', 10], ['20km', 20], ['50km', 50], ['100km', 100]]), class: "btn btn-secondary btn-lg") %>
 
-<%= link_to  "Central Coast", search_results_path(term: "Avoca Beach, NSW", distance: 50) %>
+  <%= submit_tag "Search", class: "btn btn-primary btn-lg"  %>
+  <% end %>
+</div>
+
+<%= link_to "Central Coast", search_results_path(term: "Avoca Beach, NSW", distance: 50) %>
+
 <br>
-<%= link_to "Blue Mountains", search_results_path(term: "Katoomba, NSW", distance: 50) %>
+
+<%= link_to "Blue Mountains", search_results_path(term: "Blue Mountains", distance: 50) %>
 <br>
 <%= link_to "South Coast", search_results_path(term: "Jervis Bay, NSW", distance: 50) %>
 <br>
 
-
-<%= form_tag(search_results_path, method: "GET") do %>
-  <%= text_field_tag :term %>
-  <%= select_tag(:distance, options_for_select([['10km', 10], ['20km', 20], ['50km', 50], ['100km', 100]])) %>
-
-<%= submit_tag "Search" %>
-<% end %>
-
-<!-- <div class="row">
-  <div class="col-md-3">
-    <div class="card" >
-    <%= link_to  "Central Coast", search_results_path(term: "Avoca Beach, NSW", distance: 50) %>
-      <div class="card-block">
-        <h4 class="card-title">Central Coast</h4>
-      </div>
-    </div>
-    <div class="card" >
-      <%= link_to "Blue Mountains", search_results_path(term: "Katoomba, NSW", distance: 50) %>
-      <div class="card-block">
-        <h4 class="card-title">Blue Mountains</h4>
-      </div>
-    </div>
-    <div class="card" >
-    <%= link_to "South Coast", search_results_path(term: "Jervis Bay, NSW", distance: 50) %>
-      <div class="card-block">
-        <h4 class="card-title">South Coast</h4>
-      </div>
+<div class="container">
+  <div class="card card-inverse">
+    <img class="card-img" src="http://www.centralcoastaustralia.com.au/imagesdb/headerimages/bg-beach.jpg" alt="Card image">
+    <div class="card-img-overlay">
+      <h3 class="card-title">Central Coast</h3>
     </div>
   </div>
-</div> -->
+  <br>
+  <div class="card card-inverse">
+    <img class="card-img" src="https://www.sydneyboutiquetours.com.au/images/mountains_tour/ThreeSisters.jpg" alt="Card image">
+    <div class="card-img-overlay">
+      <h3 class="card-title">Blue Mountains</h3>
+    </div>
+  </div>
+  <br>
+  <div class="card card-inverse">
+    <img class="card-img" src="https://www.steveparish-natureconnect.com.au/wp-content/uploads/140112.jpg" alt="Card image">
+    <div class="card-img-overlay">
+      <h3 class="card-title">South Coast</h3>
+    </div>
+  </div>
+</div>
+<br>

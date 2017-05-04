@@ -20,9 +20,18 @@
  }
 
  #map {
-   height: 400px;
-   width: 50%;
+   height: 550px;
+   width: 40%;
+   float: right;
+   border: 2px solid black;
+   margin-right: 5%;
   }
+
+.accom-result {
+  float: left;
+  margin-left: 5%;
+  font-size: 18px;
+}
 
 .accom_thumb{
   max-width: 100px;
@@ -42,15 +51,43 @@
 }
 
 h1 {
-  font-size: 70px;
+  font-size: 90px;
+  text-align: center;
+  color: white;
+  font-family: fantasy;
+  text-shadow: 4px 4px 4px blue;
+}
+
+.main-search {
   text-align: center;
 }
 
-.lead {
-  text-align: center;
+.card-img {
+  height: 400px;
+  width: 1108px;
 }
 
 .jumbotron {
-  background-image: url(http://hdwallpaperia.com/wp-content/uploads/2013/12/Sunset-Beach-Wallpaper-HD-Widescreen.jpg);
+  background-image: url(http://i.imgur.com/roit0yi.jpg?1);
   background-size: cover;
+}
+
+.lead {
+  color: white;
+  text-align: center;
+  text-shadow: 3px 3px 3px blue;
+  font-family: fantasy;
+  font-size: 25px;
+}
+
+body {
+  background-color: #D9D6D3;
+}
+
+.accom-info {
+  float: left;
+}
+
+.img-accom {
+  float: right;
 }
