@@ -1,26 +1,23 @@
-<div class="jumbotron">
-  <h1>Weekend Getaways</h1>
-  <h3 class="lead">Having one of those tough weeks at work? Sometimes we just need to getaway for the weekend.</h3>
-</div>
 
 <div class="main-search">
-  <%= form_tag(search_results_path, method: "GET") do %>
-    <%= text_field_tag :term %>
-    <%= select_tag(:distance, options_for_select([['10km', 10], ['20km', 20], ['50km', 50], ['100km', 100]]), class: "btn btn-secondary btn-lg") %>
+  <div>
+    <%= form_tag(search_results_path, method: "GET") do %>
+      <%= text_field_tag :term, nil, class: "form-control search-input" %>
+      <%= select_tag(:distance, options_for_select([['10km', 10], ['20km', 20], ['50km', 50], ['100km', 100]]), class: "btn btn-secondary btn-lg") %>
 
-  <%= submit_tag "Search", class: "btn btn-primary btn-lg"  %>
-  <% end %>
+    <%= submit_tag "Search", class: "btn btn-primary btn-lg"  %>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "Central Coast", search_results_path(term: "Avoca Beach, NSW", distance: 50) %>
-
+<%= link_to "Central Coast", search_results_path(term: "Central Coast, NSW", distance: 50) %>
 <br>
-
 <%= link_to "Blue Mountains", search_results_path(term: "Blue Mountains", distance: 50) %>
 <br>
 <%= link_to "South Coast", search_results_path(term: "Jervis Bay, NSW", distance: 50) %>
 <br>
 
+  <%= link_to search_results_path(term: "Central Coast, NSW", distance: 50) do %>
 <div class="container">
   <div class="card card-inverse">
     <img class="card-img" src="http://www.centralcoastaustralia.com.au/imagesdb/headerimages/bg-beach.jpg" alt="Card image">
@@ -28,6 +25,7 @@
       <h3 class="card-title">Central Coast</h3>
     </div>
   </div>
+  <% end %>
   <br>
   <div class="card card-inverse">
     <img class="card-img" src="https://www.sydneyboutiquetours.com.au/images/mountains_tour/ThreeSisters.jpg" alt="Card image">

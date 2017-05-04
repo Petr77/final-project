@@ -20,11 +20,10 @@
  }
 
  #map {
-   height: 550px;
-   width: 40%;
-   float: right;
+   height: 500px;
+   width: 44%;
    border: 2px solid black;
-   margin-right: 5%;
+   float: right;
   }
 
 .accom-result {
@@ -46,7 +45,7 @@
   margin-left: 12px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
-  width: 400px;
+  width: 300px;
   height: 30px;
 }
 
@@ -84,10 +83,32 @@ body {
   background-color: #D9D6D3;
 }
 
-.accom-info {
+#carouselImages {
+  width:450px;
+  height:450px;
+  overflow: hidden;;
   float: left;
 }
 
-.img-accom {
-  float: right;
+#carouselImages img.d-block{
+  object-fit:cover;
+}
+
+h2 {
+  font-size: 60px;
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+.main-search > div{
+  width: 40%;
+  margin: 0 auto;
+}
+
+.search-input{
+  width: 300px;
+  display: inline-block;
 }
