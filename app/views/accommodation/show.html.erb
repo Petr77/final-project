@@ -28,17 +28,17 @@
     </a>
   </div>
 
+  <div class="links">
+    <span class="place-show" place="restaurant">Restaurants</span>
+    <span class="place-show" place="store">Stores</span>
+    <span class="place-show" place="spa">Spa</span>
+    <span class="place-show" place="beauty_salon">Beauty Salon</span>
+    <span class="place-show" place="bar">Bar</span>
+  </div>
+   
   <div id="map"></div>
-
   <input id="search-input" class="controls" type="text" placeholder="Search Box">
 
-  <div class="links">
-    <div class="place-show" place="restaurant">Restaurants</div>
-    <div class="place-show" place="store">Stores</div>
-    <div class="place-show" place="spa">Spa</div>
-    <div class="place-show" place="beauty_salon">Beauty Salon</div>
-    <div class="place-show" place="bar">Bar</div>
-  </div>
 
 
   <script>
@@ -67,6 +67,7 @@
       icon: pinImage
       });
       marker.setMap(map);
+
 
       // placesService = google.maps.places.PlacesService(map);
 
@@ -129,7 +130,6 @@
     }
 
 
-
     var showPlaces = function(placeType){
 
       placesService = new google.maps.places.PlacesService(map);
@@ -176,6 +176,7 @@
 
       });
     }
+
 
   </script>
 

@@ -9,7 +9,7 @@
   <div class="accom-result">
     <h4>Accommodation:</h4>
     <% @locations.each do |l| %>
-    <%= link_to l.title, accommodation_path(l) %><br>
+    <%= link_to l.title, accommodation_path(l), data: { lat: l.latitude, lon: l.longitude } %><br>
     <% end %>
   </div>
 
@@ -30,15 +30,30 @@
 
       var bounds = new google.maps.LatLngBounds();
 
+      var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/ff0054/");
+
+      var pinImage2 = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/0099FF/");
+
       searches.forEach(function(location){
-        var m = new google.maps.Marker({
+        var lat = location[1];
+        var lng = location[2];
+        var marker = new google.maps.Marker({
           map: map,
-          position: {lat: location[1], lng: location[2]},
-          title: location[0]
+          position: {lat: lat, lng: lng},
+          title: location[0],
+          icon: pinImage
         });
-        bounds.extend(m.getPosition());
+        bounds.extend(marker.getPosition());
+
+        $("a[data-lat='" + lat + "']").on("mouseover", function () {
+          marker.setIcon(pinImage2);
+        });
+        $("a[data-lat='" + lat + "']").on("mouseout", function () {
+          marker.setIcon(pinImage);
+        });
       })
       map.fitBounds(bounds);
+
     }
   </script>
     <script async defer
