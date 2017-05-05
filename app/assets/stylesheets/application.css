@@ -87,11 +87,11 @@ body {
 }
 
 #carouselImages {
-  width:450px;
-  height:500px;
+  width:400px;
+  height:400px;
   overflow: hidden;;
   float: left;
-  margin-top: 50px;
+  margin-top: 45px;
 }
 
 #carouselImages img.d-block{
