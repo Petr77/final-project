@@ -83,7 +83,7 @@ h1 {
 
 body {
   background-color: #D9D6D3;
-  margin-bottom: 60px;
+  height: 100%;
 }
 
 #carouselImages {
@@ -136,4 +136,9 @@ h4 {
 
 span.place-show {
   padding: 18px;
+}
+
+.item {
+  color: white;
+  text-decoration: none;
 }

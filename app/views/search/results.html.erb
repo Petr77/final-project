@@ -9,7 +9,8 @@
   <div class="accom-result">
     <h4>Accommodation:</h4>
     <% @locations.each do |l| %>
-    <%= link_to l.title, accommodation_path(l), data: { lat: l.latitude, lon: l.longitude } %><br>
+    <%= link_to l.title, accommodation_path(l), data: { lat: l.latitude, lon: l.longitude } %>
+    <br>
     <% end %>
   </div>
 
